@@ -1,8 +1,13 @@
 package modelo;
 
 public class Apartamento extends Financiamento{
-    public Apartamento(double valorImovel, double taxaJurosAnual, int prazoFinanciamentoAnos){
+    private final int vagasGaragem;
+    private final int numeroAndar;
+
+    public Apartamento(double valorImovel, double taxaJurosAnual, int prazoFinanciamentoAnos, int vagasGaragem, int numeroAndar) {
         super(valorImovel, taxaJurosAnual, prazoFinanciamentoAnos);
+        this.vagasGaragem = vagasGaragem;
+        this.numeroAndar = numeroAndar;
     }
 
     public double pagamentoTotal(){
@@ -12,5 +17,13 @@ public class Apartamento extends Financiamento{
 
     public double calcularPagamentoMensal(){
         return pagamentoTotal() / (getPrazoFinanciamento() * 12);
+    }
+
+    @Override
+    public void mostrarDadosFinanc() {
+        System.out.println("---- Dados do Financiamento: Apartamento ----");
+        super.mostrarDadosFinanc();
+        System.out.println("Vagas na Garagem: " + this.vagasGaragem);
+        System.out.println("Andar: " + this.numeroAndar);
     }
 }
