@@ -58,4 +58,24 @@ public class InterfaceUsuario {
 
         return opcao == 1; // Retorna true se ele digitar 1, e false se digitar 2
     }
+
+    public double pedirAreaConstruida() {
+        double area;
+        do {
+            System.out.print("Digite a área construída (em m²): ");
+            area = scanner.nextDouble();
+            if (area <= 0) System.out.println("Valor inválido. Deve ser positivo.");
+        } while (area <= 0);
+        return area;
+    }
+
+    public double pedirTamanhoTerreno() {
+        double tamanho;
+        do {
+            System.out.print("Digite o tamanho do terreno (em m²): ");
+            tamanho = scanner.nextDouble();
+            if (tamanho <= 0) System.out.println("Valor inválido. Deve ser positivo.");
+        } while (tamanho <= 0);
+        return tamanho;
+    }
 }
