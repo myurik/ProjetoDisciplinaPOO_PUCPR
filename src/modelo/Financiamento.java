@@ -1,6 +1,6 @@
 package modelo;
 
-public class Financiamento {
+public abstract class Financiamento {
     protected double valorImovel;
     protected int prazoFinanciamento;
     protected double taxaJurosAnual;
@@ -32,9 +32,9 @@ public class Financiamento {
     }
 
     public void mostrarDadosFinanc(){
-        System.out.println("---- Dados do Financiamento ----");
+        System.out.println("---- Informações ----");
         System.out.println("Valor do Imóvel: R$ " + getValorImovel());
-        System.out.println("Prazo do Financiamento: " + getPrazoFinanciamento());
+        System.out.println("Prazo do Financiamento: " + getPrazoFinanciamento() + "anos");
         System.out.println("Taxa de Juros Anual: " + getTaxaJurosAnual() + "%");
         System.out.printf("Pagamento Mensal: R$ %.2f\n", calcularPagamentoMensal());
         System.out.printf("Pagamento Total: R$ %.2f\n", pagamentoTotal());
