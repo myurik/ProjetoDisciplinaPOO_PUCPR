@@ -1,10 +1,11 @@
 package main;
 
-import modelo.Financiamento;
-import modelo.Casa;
 import modelo.Apartamento;
+import modelo.Casa;
+import modelo.Financiamento;
 import modelo.Terreno;
 import util.InterfaceUsuario;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -19,15 +20,17 @@ public class Main {
         double valorImovel = interfaceUsuario.pedirValorImovel();
         int prazoFinanc = interfaceUsuario.pedirPrazoFinanciamento();
         double taxaJuros = interfaceUsuario.pedirTaxaJurosAnual();
-        listaFinanc.add(new Casa(valorImovel, taxaJuros, prazoFinanc));
+        double areaConstruida = interfaceUsuario.pedirAreaConstruida();
+        double tamanhoTerreno = interfaceUsuario.pedirTamanhoTerreno();
+
+        listaFinanc.add(new Casa(valorImovel, taxaJuros, prazoFinanc, areaConstruida, tamanhoTerreno));
         System.out.println("Financiamento adicionado com sucesso!\n");
 
-        // 2. Instanciando os demais 4 financiamentos chumbados no código (Totalizando 5)
-        // Usamos as taxas como "0.10" (que representa 10%) para bater com o gabarito do professor
-        listaFinanc.add(new Casa(500000, 0.10, 10));        // Casa do exemplo do prof
-        listaFinanc.add(new Apartamento(500000, 0.10, 10)); // Apto do exemplo do prof
-        listaFinanc.add(new Apartamento(300000, 0.08, 15)); // Apto aleatório
-        listaFinanc.add(new Terreno(500000, 0.10, 10));     // Terreno do exemplo do prof
+        // 2. Instanciando os demais com dados inventados para os novos parâmetros
+        listaFinanc.add(new Casa(500000, 0.10, 10, 250, 400));                  // Casa
+        listaFinanc.add(new Apartamento(500000, 0.10, 10, 2, 12));              // Apto
+        listaFinanc.add(new Apartamento(300000, 0.08, 15, 1, 5));               // Apto
+        listaFinanc.add(new Terreno(500000, 0.10, 10, "Zona Residencial"));     // Terreno
 
         System.out.println("[!] Demais financiamentos de exemplo foram carregados.");
 
@@ -42,12 +45,14 @@ public class Main {
             totalImoveis += f.getValorImovel();
             totalFinanciamentos += f.pagamentoTotal();
 
-            System.out.printf("Financiamento %d - valor do imóvel: R$ %.2f, valor do financiamento: R$ %.2f\n",
-                    (i + 1), f.getValorImovel(), f.pagamentoTotal());
-        }
+            // Chamamos o metodo que criamos para mostrar os atributos específicos em ação!
+            f.mostrarDadosFinanc();
+            System.out.println(); // Pula uma linha para organizar visualmente
 
-        System.out.printf("\nTotal de todos os imóveis: R$ %.2f, total de todos os financiamentos: R$ %.2f\n",
-                totalImoveis, totalFinanciamentos);
+        }
+        System.out.println("==============================================");
+        System.out.printf("Total de todos os imóveis: R$ %.2f\n", totalImoveis);
+        System.out.printf("Total de todos os financiamentos: R$ %.2f\n", totalFinanciamentos);
 
     }
 }
