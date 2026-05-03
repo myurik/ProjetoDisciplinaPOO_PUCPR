@@ -39,17 +39,15 @@ public class Main {
         double totalImoveis = 0;
         double totalFinanciamentos = 0;
 
-        for (int i = 0; i < listaFinanc.size(); i++) {
-            Financiamento f = listaFinanc.get(i);
-
+        for (Financiamento f : listaFinanc) {
             totalImoveis += f.getValorImovel();
             totalFinanciamentos += f.pagamentoTotal();
 
             // Chamamos o metodo que criamos para mostrar os atributos específicos em ação!
             f.mostrarDadosFinanc();
             System.out.println(); // Pula uma linha para organizar visualmente
-
         }
+
         System.out.println("==============================================");
         System.out.printf("Total de todos os imóveis: R$ %.2f\n", totalImoveis);
         System.out.printf("Total de todos os financiamentos: R$ %.2f\n", totalFinanciamentos);
