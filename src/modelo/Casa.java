@@ -36,11 +36,20 @@ public class Casa extends Financiamento{
         }
     }
 
+
     @Override
     public void mostrarDadosFinanc() {
         System.out.println("---- Dados do Financiamento: Casa ----");
         super.mostrarDadosFinanc(); // Chama a impressão genérica da classe mãe
         System.out.println("Área Construída: " + this.areaConstruida + " m²");
         System.out.println("Tamanho do Terreno: " + this.tamanhoTerreno + " m²");
+    }
+
+    @Override
+    public String toString() {
+        String sb = super.toString() + "," +
+                this.areaConstruida + "," +
+                this.tamanhoTerreno;
+        return sb;
     }
 }

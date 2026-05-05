@@ -19,11 +19,20 @@ public class Apartamento extends Financiamento{
         return pagamentoTotal() / (getPrazoFinanciamento() * 12);
     }
 
+
     @Override
     public void mostrarDadosFinanc() {
         System.out.println("---- Dados do Financiamento: Apartamento ----");
         super.mostrarDadosFinanc();
         System.out.println("Vagas na Garagem: " + this.vagasGaragem);
         System.out.println("Andar: " + this.numeroAndar);
+    }
+
+    @Override
+    public String toString() {
+        String sb = super.toString() + "," +
+                this.vagasGaragem + "," +
+                this.numeroAndar;
+        return sb;
     }
 }

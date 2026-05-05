@@ -12,10 +12,18 @@ public class Terreno extends Financiamento{
         return super.calcularPagamentoMensal() * 1.02;
     }
 
+
     @Override
     public void mostrarDadosFinanc() {
         System.out.println("---- Dados do Financiamento: Terreno ----");
         super.mostrarDadosFinanc();
         System.out.println("Tipo de Zona: " + this.tipoDeZona);
+    }
+
+    @Override
+    public String toString() {
+        String sb = super.toString() + "," +
+                this.tipoDeZona;
+        return sb;
     }
 }

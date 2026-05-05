@@ -1,6 +1,8 @@
 package modelo;
 
-public abstract class Financiamento {
+import java.io.Serializable;
+
+public abstract class Financiamento implements Serializable {
     protected double valorImovel;
     protected int prazoFinanciamento;
     protected double taxaJurosAnual;
@@ -31,6 +33,7 @@ public abstract class Financiamento {
         return calcularPagamentoMensal() * getPrazoFinanciamento() * 12;
     }
 
+
     public void mostrarDadosFinanc(){
         System.out.println("---- Informações ----");
         System.out.println("Valor do Imóvel: R$ " + getValorImovel());
@@ -38,5 +41,15 @@ public abstract class Financiamento {
         System.out.println("Taxa de Juros Anual: " + getTaxaJurosAnual() + "%");
         System.out.printf("Pagamento Mensal: R$ %.2f\n", calcularPagamentoMensal());
         System.out.printf("Pagamento Total: R$ %.2f\n", pagamentoTotal());
+    }
+
+    @Override
+    public String toString() {
+        String sb = this.getValorImovel() + "," +
+                this.calcularPagamentoMensal() + "," +
+                this.pagamentoTotal() + "," +
+                this.getTaxaJurosAnual() + "," +
+                this.getPrazoFinanciamento();
+        return sb;
     }
 }
