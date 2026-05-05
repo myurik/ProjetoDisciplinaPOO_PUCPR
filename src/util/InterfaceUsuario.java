@@ -1,5 +1,6 @@
 package util;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InterfaceUsuario {
@@ -9,73 +10,101 @@ public class InterfaceUsuario {
         this.scanner = new Scanner(System.in);
     }
     public double pedirValorImovel(){
-        double valorImovel;
+        double valorImovel = 0;
+        boolean valido = false;
         do {
-            System.out.print("Digite o valor do Imóvel: R$ ");
-            valorImovel = scanner.nextDouble();
-            if(valorImovel <= 0){
-                System.out.println("Valor do Imóvel é inválido. Deve ser positivo. Tente Novamente.");
+            try {
+                System.out.print("Digite o valor do Imóvel: R$ ");
+                valorImovel = scanner.nextDouble();
+                if (valorImovel <= 0) {
+                    System.out.println("Valor do Imóvel é inválido. Deve ser positivo. Tente Novamente.");
+                } else {
+                    valido = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO! Entrada inválida. Digite apenas números.");
+                scanner.next();
             }
-        }
-        while(valorImovel <= 0);
+
+        } while (!valido);
         return valorImovel;
     }
 
     public int pedirPrazoFinanciamento(){
         int prazoFinanc = 0;
         while(prazoFinanc <= 0){
-            System.out.print("Digite o prazo de financiamento (em anos):  ");
-            prazoFinanc = scanner.nextInt();
-            if(prazoFinanc <= 0){
-                System.out.println("Prazo inválido. Tente Novamente.");
+            try {
+                System.out.print("Digite o prazo de financiamento (em anos):  ");
+                prazoFinanc = scanner.nextInt();
+                if (prazoFinanc <= 0) {
+                    System.out.println("Prazo inválido. Tente Novamente.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO! Entrada inválida. Digite um número inteiro.");
+                scanner.next(); // Limpa o "lixo" para não criar um loop infinito.
             }
         }
         return prazoFinanc;
     }
 
     public double pedirTaxaJurosAnual(){
-        double taxaJuros;
+        double taxaJuros = 0;
+        boolean valido = false;
+
         do {
-            System.out.print("Digite a taxa de juros anual (ex: 10.5): ");
-            taxaJuros = scanner.nextDouble();
-            if (taxaJuros >= 1000){
-                System.out.println("Erro: Taxa de juros irreal. Digite um valor válido. Tente novamente.");
+            try {
+                System.out.print("Digite a taxa de juros anual (ex: 10.5): ");
+                taxaJuros = scanner.nextDouble();
+                if (taxaJuros >= 1000) {
+                    System.out.println("Erro: Taxa de juros irreal. Digite um valor válido. Tente novamente.");
+                } else if (taxaJuros <= 0) {
+                    System.out.println("Erro: A taxa de juros deve ser maior do que zero. Tente novamente.");
+                } else {
+                    valido = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO! Entrada inválida. Digite apenas números.");
+                scanner.next();
             }
-            else if (taxaJuros <= 0){
-                System.out.println("Erro: A taxa de juros deve ser maior do que zero. Tente novamente.");
-            }
-        }
-        while(taxaJuros <= 0 || taxaJuros >= 1000);
+        } while (!valido);
         return taxaJuros;
     }
 
-    public boolean pedirContinuar() {
-        int opcao;
-        do {
-            System.out.print("Deseja simular outro financiamento? (1 - Sim / 2 - Não): ");
-            opcao = scanner.nextInt();
-        } while (opcao != 1 && opcao != 2);
-
-        return opcao == 1; // Retorna true se ele digitar 1, e false se digitar 2
-    }
 
     public double pedirAreaConstruida() {
-        double area;
+        double area = 0;
+        boolean valido = false;
         do {
-            System.out.print("Digite a área construída (em m²): ");
-            area = scanner.nextDouble();
-            if (area <= 0) System.out.println("Valor inválido. Deve ser positivo.");
-        } while (area <= 0);
+            try {
+                System.out.print("Digite a área construída (em m²): ");
+                area = scanner.nextDouble();
+                if (area <= 0) {
+                    System.out.println("Valor inválido. Deve ser positivo.");
+                } else {
+                    valido = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO! Entrada inválida.");
+                scanner.next();
+            }
+        } while (!valido);
         return area;
     }
 
     public double pedirTamanhoTerreno() {
-        double tamanho;
+        double tamanho = 0;
+        boolean valido = false;
         do {
-            System.out.print("Digite o tamanho do terreno (em m²): ");
-            tamanho = scanner.nextDouble();
-            if (tamanho <= 0) System.out.println("Valor inválido. Deve ser positivo.");
-        } while (tamanho <= 0);
+            try {
+                System.out.print("Digite o tamanho do terreno (em m²): ");
+                tamanho = scanner.nextDouble();
+                if (tamanho <= 0) System.out.println("Valor inválido. Deve ser positivo.");
+                else valido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO! Entrada inválida.");
+                scanner.next();
+            }
+        } while (!valido);
         return tamanho;
     }
 }

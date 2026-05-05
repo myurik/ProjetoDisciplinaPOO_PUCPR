@@ -1,11 +1,11 @@
 package modelo;
 
 public class Terreno extends Financiamento{
-    private final String tipoZona;
+    private final String tipoDeZona;
 
     public Terreno(double valorImovel, double taxaJurosAnual, int prazoFinanciamentoAnos, String tipoZona) {
         super(valorImovel, taxaJurosAnual, prazoFinanciamentoAnos);
-        this.tipoZona = tipoZona;
+        this.tipoDeZona = tipoZona;
     }
 
     public double calcularPagamentoMensal(){
@@ -16,6 +16,6 @@ public class Terreno extends Financiamento{
     public void mostrarDadosFinanc() {
         System.out.println("---- Dados do Financiamento: Terreno ----");
         super.mostrarDadosFinanc();
-        System.out.println("Tipo de Zona: " + this.tipoZona);
+        System.out.println("Tipo de Zona: " + this.tipoDeZona);
     }
 }
